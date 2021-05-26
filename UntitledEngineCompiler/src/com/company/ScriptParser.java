@@ -64,7 +64,7 @@ public class ScriptParser {
 
                 if (lineWithoutSpace.startsWith("call")) {
                     String fileToCall = subStringBetween(line, "(\"", "\")");
-                    if (fileToCall.startsWith("./")) fileToCall.replace("./", file.getParent() + "/");
+                    if(fileToCall.startsWith("./")) fileToCall = fileToCall.replace("./", file.getParent() + "/");
                     File file1 = new File(fileToCall);
                     if (file1.exists()) {
                         linkedScriptToCompile.add(fileToCall);

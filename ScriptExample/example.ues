@@ -85,7 +85,7 @@ while {
 #           The `call` function
 #           Calls another new script file, clears all Strings in the console from the console the current script is showing, and runs the new script.
 #           (Warning!) If the target file does not exist, `FileNotFoundException` is thrown.
-            call("/home/cuj1559/바탕화면/UntitledGameEngine/ScriptExample/example2.ues")
+            call("./example2.ues")
         } case
 
 #       In this case, if the statement "exit" is entered through the `input` statement, the sub command is processed.
@@ -126,6 +126,10 @@ while {
             } else
 
         } case
+
+        case "start2" {
+            call("./example3/example3.ues")
+        }
 
 #       If none of the above `case` statements match, the subcommand is executed in `default`.
         default {

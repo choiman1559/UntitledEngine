@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="UntitledEngineCompiler:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/UntitledEngineCompiler_jar</output-path>
+    <root id="archive" name="UntitledEngineCompiler.jar">
+      <element id="module-output" name="UntitledEngineCompiler" />
+    </root>
+  </artifact>
+</component>

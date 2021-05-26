@@ -1,7 +1,5 @@
 package com.company;
 
-import com.sun.javafx.PlatformUtil;
-
 import java.io.*;
 import java.util.Objects;
 import java.util.Scanner;
@@ -13,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Runtime runtime = Runtime.getRuntime();
-        runtime.exec(PlatformUtil.isWindows() ? "cls" : "clear").waitFor();
+        runtime.exec(PlatformUtil.isWindows() ? "cls" : "clear");
 
         String javac_ver = execCmd("javac --version");
         if(!javac_ver.contains("javac ")) {
@@ -26,6 +24,8 @@ public class Main {
             System.out.println("Jar is not exists on your computer!");
             System.exit(-1);
         }
+
+        System.out.println("UntitledEngine Compiler v.0.1 with " + javac_ver);
 
         if(args.length < 1) {
             System.out.println("Usage:java -jar UnityEngineCompiler.jar <*.ues script file> <output folder>");
