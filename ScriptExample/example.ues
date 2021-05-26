@@ -1,0 +1,157 @@
+#Untitled Text Game Engine Script Example v.0.0.1
+#Made by. choiman1559, 2021. THIS PROGRAM IS UNDER GNU GPL 3.0+ LICENSE.
+
+#The Untitled Text Game Engine Script
+
+#Purpose of this language
+#This language is primarily designed to make console-based text games easier to learn and write more comfortable code.
+#This language is built to run natively on top of java (javafx to be exact),
+#And is designed to be portable to other languages depending on the capabilities of the backend developer.
+#In addition, this language is designed to be able to use both a compilation method that translates once into a JVM-based language and executes it,
+#And a script method that interprets and executes directly on Java without going through compilation.
+
+#Grammers
+#First, if the first character of a line is '#', the line is commented out.
+#Second, tag or reserved words such as `input`, `while`, and `case` must be wrapped with parentheses (`{`, `}`),
+#The tag or reserved word used must be specified after the parentheses.
+#(Exception) `main` tag doesn't need parentheses.
+#Third, tags such as `main` or `java` must be added with a `:` after the tag in the case of tags that are specially handled by the interpreter (or parser)
+#Fourth, the interpreter (or parser) only allows one call or command to any call or command per line.
+#Fifth, when an exception or bug occurs, Exception may be thrown depending on its severity, and when using a command or call that does not exist, the line is ignored.
+
+#The `header` tag
+#This tag is not handled by the interpreter (or parser) by default, but can be used by developers or users to check information.
+header: {
+    author=cuj1559
+    mainTitle=script
+    description=UntitledEngine
+    version=1.0.0
+} header
+
+#The `java` tag
+#(Script-method script only)
+#This tag is used by javafx to change the console's design or to make other configuration changes.
+#(Warning!) Must be called before calling the `main` tag.
+#Entering the values in the tag is optional, not required.
+#If you don't want to use a tag, just keep `java: {` and `} java` and empty all the values in the tag.
+java: {
+	javafx.isFullScreen=false
+	javafx.setIcon=./icon.png
+#   TODO:Add `setIcon` implementation
+	javafx.setScreenWeight=1024
+	javafx.setScreenHeight=720
+	javafx.setScreenTitle=Hello world!
+	javafx.setScreenResizeable=false
+} java
+
+#The `main` tag
+#All calls and commands are made within this tag.
+main:
+
+#The `println` function
+#Print the text. It's basically a wrapping of Java's `System.out.println` function.
+println("Hello World!")
+
+#The `while` Control Flow Statement
+#Implement an infinite, unconditional loop.
+#You can break the loop with `break`.
+#TODO:Add `while` implementation
+while {
+
+#   The `input` Control Flow Statement
+#   Waits for the user's terminal input. When the user inputs `ENTER`, the input ends, and the input string is processed through the `case` statement.
+#   If there is a command in the `input` statement other than the `case` statement, the command is ignored.
+    input {
+
+#       The `case` Control Flow Statement
+#       If there is a case input value that matches the value entered through the `input` statement, the sentence under the case statement is executed.
+#       In this case, if the statement "start" is entered through the `input` statement, the sub command is processed.
+        case "start" {
+            println("Loading Game...")
+
+#           (Compile-method script only)
+#           The `javaImpl` Control Flow Statement
+#           Execute native Java code entered in parentheses.
+#           (Warning!) Any Exception thrown here is thrown on the main thread.
+            javaImpl: {
+                System.gc();
+            } javaImpl
+
+#           The `wait` function
+#           Puts the thread to sleep by the given number of milliseconds.
+#           (Warning!) There is a risk of busy-waiting.
+            wait(1000)
+
+#           The `call` function
+#           Calls another new script file, clears all Strings in the console from the console the current script is showing, and runs the new script.
+#           (Warning!) If the target file does not exist, `FileNotFoundException` is thrown.
+            call("/home/cuj1559/바탕화면/UntitledGameEngine/ScriptExample/example2.ues")
+        } case
+
+#       In this case, if the statement "exit" is entered through the `input` statement, the sub command is processed.
+        case "exit" {
+
+#           The `break` Control Flow Statement
+#           Exit from the parent `while` statement.
+            break
+        } case
+
+        case "data put" {
+#           The 'data.put' function
+#           Put the given data name and value in the data storage file named {script name}_saves.dat located in the folder where the current script is located.
+#           If an object with that name already exists, the value of the object is overwritten.
+#           TODO:Add `data.put` implementation
+            data.put("testData", "true")
+        } case
+
+        case "data get" {
+#           The `print` function
+#           Print the text. It's basically a wrapping of Java's `System.out.print` function.
+            print("the value of data is: ")
+
+#           The 'data.get' function
+#           Returns the value of the object with the given name from the {script name}_saves.dat file in the folder where the running script is located.
+#           If the value does not exist, an empty string is returned.
+#           TODO:Add `data.get` implementation
+            println(data.get("testData"))
+
+            if (data.get("testdata").equals("true")) {
+                println("testData is true!")
+            } if
+            else if (data.get("testdata").equals("false")) {
+                println("testData is false!")
+            } else if
+            else {
+                println("can't find value of testData!")
+            } else
+
+        } case
+
+#       If none of the above `case` statements match, the subcommand is executed in `default`.
+        default {
+            println("I don't know what you're saying~")
+        } default
+    } input
+} while
+
+#The `print.lines` function
+#It is used to print strings spanning multiple lines, such as ASCII art.
+print.lines {
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░█░░█░░░░░░░░░░
+░█░░░█░░░░███░░░█░░█░░░░███░░░
+░█░░░█░░██░░██░░█░░█░░██░░░█░░
+░█░░░█░░█░░░░█░░█░░█░░█░░░░█░░
+░█████░░██████░░█░░█░░█░░░░██░
+░█░░░█░░█░░░░░░░█░░█░░█░░░░░█░
+░█░░░█░░█░░░░░░░█░░█░░█░░░░██░
+░█░░░█░░█████░░░█░░█░░██████░░
+░█░░░█░░░░░░░░░░░░░░░░░░░░░░░░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+} print.lines
+
+#The `exit` function
+#Terminates both script and program and returns the given return value to the system. It is basically a wrapping of Java's `System.exit` function.
+#(Warning!) Even if the interpreter (or parser) reaches the end of the script, the interpreter (or parser) waits without terminating the script.
+#To prevent this, you must call the `exit` function at the end of the script.
+exit(0)

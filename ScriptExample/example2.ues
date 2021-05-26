@@ -1,0 +1,21 @@
+header: {
+    author=cuj1559
+    mainTitle=example2
+    description=UntitledEngine
+    version=1.0.0
+} header
+
+java: {
+	javafx.isFullScreen=false
+	javafx.setScreenWeight=1024
+	javafx.setScreenHeight=720
+	javafx.setScreenTitle=Hello world!
+	javafx.setScreenResizeable=false
+} java
+
+main:
+println("Hello World!")
+wait(1000)
+println("good bye!")
+wait(1000)
+exit(0)

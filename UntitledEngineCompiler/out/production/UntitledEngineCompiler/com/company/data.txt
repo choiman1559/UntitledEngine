@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class data {
+    public static String get(String name) throws IOException {
+        File dataFile = new File(System.getProperty("user.dir") + "/saves.dat");
+        String[] dataFileArray;
+        List<String> items = new ArrayList<>();
+        FileInputStream fileInputStream = new FileInputStream(dataFile);
+        DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(dataInputStream));
+        String str_line;
+
+        while ((str_line = buffer.readLine()) != null) {
+            str_line = str_line.trim();
+            if (str_line.length() != 0 && !str_line.startsWith("#")) {
+                items.add(str_line);
+            }
+        }
+        dataFileArray = items.toArray(new String[0]);
+
+        for (String s : dataFileArray) {
+            String[] array = s.split("=");
+            if (array[0].equals(name)) return array[1];
+        }
+        return "";
+    }
+
+    public static void put(String name, String value) throws IOException {
+        File dataFile = new File(System.getProperty("user.dir") + "/saves.dat");
+
+        if(!dataFile.getParentFile().exists() || !dataFile.exists()) {
+            dataFile.getParentFile().mkdirs();
+            dataFile.createNewFile();
+        }
+
+        String[] dataFileArray;
+        List<String> items = new ArrayList<>();
+        FileInputStream fileInputStream = new FileInputStream(dataFile);
+        DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(dataInputStream));
+        String str_line;
+
+        while ((str_line = buffer.readLine()) != null) {
+            str_line = str_line.trim();
+            if (str_line.length() != 0 && !str_line.startsWith("#")) {
+                items.add(str_line);
+            }
+        }
+        dataFileArray = items.toArray(new String[0]);
+
+        StringBuilder lines = new StringBuilder();
+        boolean isValueExists = false;
+        for (String s : dataFileArray) {
+            String[] array = s.split("=");
+            if (array[0].equals(name)) {
+                isValueExists = true;
+                lines.append(name).append("=").append(value).append("\n");
+            } else lines.append(s);
+        }
+
+        if(!isValueExists) {
+            lines.append(name).append("=").append(value).append("\n");
+        }
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter(dataFile));
+        writer.write(String.valueOf(lines));
+        writer.close();
+    }
+}
