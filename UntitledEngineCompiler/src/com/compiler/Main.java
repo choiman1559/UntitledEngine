@@ -20,12 +20,6 @@ public class Main {
             System.exit(-1);
         }
 
-        String jar_ver = execCmd("jar --version");
-        if (!jar_ver.contains("jar ")) {
-            System.out.println("Jar is not exists on your computer!");
-            System.exit(-1);
-        }
-
         System.out.println("UntitledEngine Compiler v.0.1 with " + javac_ver);
 
         if (args.length < 1) {
