@@ -5,6 +5,12 @@ import java.util.List;
 public class data {
     public static String get(String name) throws IOException {
         File dataFile = new File(System.getProperty("user.dir") + "/saves.dat");
+        
+        if(!dataFile.getParentFile().exists() || !dataFile.exists()) {
+            dataFile.getParentFile().mkdirs();
+            dataFile.createNewFile();
+        }
+        
         String[] dataFileArray;
         List<String> items = new ArrayList<>();
         FileInputStream fileInputStream = new FileInputStream(dataFile);

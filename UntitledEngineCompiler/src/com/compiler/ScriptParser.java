@@ -1,4 +1,4 @@
-package com.company;
+package com.compiler;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -59,6 +59,12 @@ public class ScriptParser {
 
                 if (lineWithoutSpace.startsWith("exit")) {
                     ParsedJavaCode.append("System.").append(line).append(";\n");
+                    continue;
+                }
+
+                if (lineWithoutSpace.startsWith("clear")) {
+                    ParsedJavaCode.append("ProcessBuilder processBuilder = System.getProperty(\"os.name\").contains(\"Windows\") ? new ProcessBuilder(\"cmd\", \"/c\", \"cls\") : new ProcessBuilder(\"clear\");\n");
+                    ParsedJavaCode.append("Process process = processBuilder.inheritIO().start();\nprocess.waitFor();\n");
                     continue;
                 }
 

@@ -55,7 +55,6 @@ println("Hello World!")
 #The `while` Control Flow Statement
 #Implement an infinite, unconditional loop.
 #You can break the loop with `break`.
-#TODO:Add `while` implementation
 while {
 
 #   The `input` Control Flow Statement
@@ -100,7 +99,6 @@ while {
 #           The 'data.put' function
 #           Put the given data name and value in the data storage file named {script name}_saves.dat located in the folder where the current script is located.
 #           If an object with that name already exists, the value of the object is overwritten.
-#           TODO:Add `data.put` implementation
             data.put("testData", "true")
         } case
 
@@ -112,7 +110,6 @@ while {
 #           The 'data.get' function
 #           Returns the value of the object with the given name from the {script name}_saves.dat file in the folder where the running script is located.
 #           If the value does not exist, an empty string is returned.
-#           TODO:Add `data.get` implementation
             println(data.get("testData"))
 
             if (data.get("testdata").equals("true")) {
@@ -128,7 +125,7 @@ while {
         } case
 
         case "start2" {
-            call("./example3/example3.ues")
+            call("./example3.ues")
         }
 
 #       If none of the above `case` statements match, the subcommand is executed in `default`.

@@ -14,6 +14,7 @@ java: {
 } java
 
 main:
+clear()
 println("Hello World!")
 wait(1000)
 println("good bye!")

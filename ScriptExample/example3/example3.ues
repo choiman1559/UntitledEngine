@@ -1,7 +1,0 @@
-main:
-print("press any key to exit")
-input {
-    default {
-        exit(0)
-    } default
- } input

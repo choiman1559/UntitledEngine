@@ -1,0 +1,33 @@
+main:
+println("press any key to break, press looptest to test loop")
+while {
+    input {
+        case "looptest" {
+            println("press break to break")
+            while {
+                input {
+                    case "break" {
+                        break
+                    } case
+
+                    default{
+                        println("press break to exit")
+                    } default
+                } input
+            } while
+        } case
+
+        default {
+            break
+        } default
+    } input
+} while
+
+println("press any key to exit")
+while {
+    input {
+        default {
+            exit(0)
+        } default
+    } input
+} while
