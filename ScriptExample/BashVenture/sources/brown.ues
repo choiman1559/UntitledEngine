@@ -1,0 +1,69 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+print.lines {
+You run south and through an open archway into a dark, dingy place.
+The carpet looks like the 70s threw up on it, and the place smells faintly
+of cabbage. This could well be every retirement home ever made, combined
+into one place. It's tragic.
+
+Oddly, though, there's a lever set into the right hand wall.
+} print.lines
+
+if(data.get("leverstate").equals("on")) {
+    println("The last time you were in this room, you turned the lever on. It's still on.")
+} if
+
+else {
+    println("It looks like it's in the off position.")
+} else
+
+print.lines {
+
+The only exit is north, back the way you came.
+
+What would you like to do?
+} print.lines
+
+while {
+    input {
+        case "n" {
+            call("./mainroom.ues")
+            break
+        } case
+
+        case "s" {
+            println("You attempt to walk through the wall. You fail.")
+        } case
+
+        case "e" {
+            println("Right, let me explain this whole 'wall' thing to you...")
+        } case
+
+        case "w" {
+            println("Seriously? Though the wall? Sorry, I can't do that.")
+            break
+        } case
+
+        case "u" {
+            if(data.get("leverstate").equals("on")) {
+                println("Having already turned it on, you try to turn it off. And fail.")
+            } if
+
+            else {
+                data.put("leverstate", "on")
+                println("You push the lever to 'on', and hear a humming start elsewhere in the building.")
+            } else
+        } case
+
+        case "h" {
+            println("You hug yourself, and hope nobody is watching.")
+        } case
+
+        default {
+            println("I'm sorry, I don't understand you. Commands are: n, e, s, w, u and h.")
+        } default
+    } input
+} while

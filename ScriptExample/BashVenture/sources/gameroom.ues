@@ -1,0 +1,67 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+print.lines {
+This room is small, but has a pretty sweet looking computer
+sat on a desk in the middle of it. Is that... YES!
+Steam is installed, and it looks like the entire library of
+games is installed! This is one epic gaming rig.
+
+The only way out is east, back the way you came... but...
+shiny. Maybe it'd be rude NOT to sit down and game a little.
+
+What would you like to do?
+} print.lines
+
+while {
+    input {
+        case "n" {
+            println("WALL EQUALS TRUE.")
+            break
+        } case
+
+        case "s" {
+            println("Nope. Wall.")
+            break
+        } case 
+
+        case "e" {
+            println("You were going to go east, then you took a wall to the face.")
+        } case
+
+        case "w" {
+            call("./kroo2.ues")
+            break
+        } case
+
+        case "u" {
+            println("You sit and game. And game. And game. You forget about time,")
+            println("and food, and people. You realise that you cannot get up. You can't")
+            println("move. You are stuck to the chair.\n")
+            wait(4000)
+
+            println("Days go by. Weeks. You've played game after game, but...\n")
+            println("Your body is giving up. With your final breath you come to realise that")
+            println("you cannot live on gamerpoints alone. You close your eyes for the last time.")
+            wait(4000)
+
+            println("\n\nYOU ARE DEAD.\nPress [ENTER] to try again...")
+            input {
+                default {
+                    call("./mainroom.ues")
+                    break
+                } default
+            } input
+        } case
+
+        case "h" {
+            println("You hug the computer. Nerd.")
+        } case
+
+        default {
+            println("I'm sorry, I don't understand you. Commands are: n, e, s, w, u and h.")
+        } default
+    } input
+} while

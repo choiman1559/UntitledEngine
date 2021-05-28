@@ -1,6 +1,7 @@
 package com.compiler;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.jar.Attributes;
@@ -20,7 +21,7 @@ public class Main {
             System.exit(-1);
         }
 
-        System.out.println("UntitledEngine Compiler v.0.1 with " + javac_ver);
+        System.out.println("UntitledEngine Compiler v.0.2 with " + javac_ver);
 
         if (args.length < 1) {
             System.out.println("Usage:java -jar UnityEngineCompiler.jar <*.ues script file> <output folder>");
@@ -31,15 +32,16 @@ public class Main {
             if (scriptFile.exists() && scriptFile.isFile()) {
                 if (args.length < 2) {
                     outputFolder = new File(scriptFile.getParent() + "/output");
-                    if (!outputFolder.exists()) outputFolder.mkdirs();
                 } else {
                     outputFolder = new File(args[1]);
-                    if (!outputFolder.exists()) outputFolder.mkdirs();
                 }
             } else {
-                System.out.println("File " + scriptFile.toString() + "is Not Found or is Not File!");
+                System.out.println("File " + scriptFile.toString() + " is Not Found or is Not File!");
                 System.exit(-1);
             }
+
+            if (outputFolder.exists()) deleteFolder(outputFolder);
+            outputFolder.mkdirs();
 
             tempBuildFolder = new File(outputFolder.getAbsolutePath() + "/build");
             tempJavaFolder = new File(tempBuildFolder.getAbsolutePath() + "/java");
@@ -99,12 +101,13 @@ public class Main {
         }
     }
 
-    static void deleteFolder(File file){
-        for (File subFile : Objects.requireNonNull(file.listFiles())) {
-            if(subFile.isDirectory()) {
-                deleteFolder(subFile);
-            } else {
-                subFile.delete();
+    static void deleteFolder(File file) {
+        File[] contents = file.listFiles();
+        if (contents != null) {
+            for (File f : contents) {
+                if (! Files.isSymbolicLink(f.toPath())) {
+                    deleteFolder(f);
+                }
             }
         }
         file.delete();

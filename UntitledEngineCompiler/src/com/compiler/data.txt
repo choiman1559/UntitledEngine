@@ -62,12 +62,12 @@ public class data {
             String[] array = s.split("=");
             if (array[0].equals(name)) {
                 isValueExists = true;
-                lines.append(name).append("=").append(value).append("\n");
+                lines.append("\r\n").append(name).append("=").append(value);
             } else lines.append(s);
         }
 
         if(!isValueExists) {
-            lines.append(name).append("=").append(value).append("\n");
+            lines.append("\r\n").append(name).append("=").append(value);
         }
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(dataFile));

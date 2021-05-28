@@ -1,0 +1,69 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+print.lines {
+You run north, pushing through the half-open doorway ahead.
+The room you find yourself in is bright. A sign on the wall tells
+you that you are in the White Room. I guess that explains why it's
+so bright and all that...
+
+} print.lines
+
+if(data.get("leverstate").equals("on")) {
+    println("There's a delecately carved statue at the end of the room.")
+    println("It's a kitten, hewn from beautiful white marble.")
+    println("It is also emitting a strange humming noise.")
+} if
+
+else {
+    println("There's a delecately carved statue at the end of the room.")
+    println("It's a kitten, hewn from beautiful white marble.")
+} else
+
+print.lines {
+
+The only exit is south, back the way you came.
+
+What would you like to do?
+} print.lines
+
+while {
+    input {
+        case "n" {
+            println("Somehow you think walls don't apply to you. They do.")
+        } case
+
+        case "s" {
+            call("./mainroom.ues")
+            break
+        } case 
+
+        case "e" {
+            println("No can do. There's a wall there.")
+        } case
+
+        case "w" {
+            println("Seriously? Though the wall? Sorry, I can't do that.")
+        } case
+
+        case "u" {
+            println("You try to use the statue. It feels weird, so you stop." )
+        } case
+
+        case "h" {
+            if(data.get("leverstate").equals("on")) {
+                call("./kroo.ues")
+                break
+            } if
+            else {
+                println("You hug the statue. It seems to vibrate a little. Weird.")
+            } else
+        } case
+
+        default {
+            println("I'm sorry, I don't understand you. Commands are: n, e, s, w, u and h.")
+        } default
+    } input
+} while

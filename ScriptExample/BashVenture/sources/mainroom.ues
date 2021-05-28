@@ -1,0 +1,52 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+print.lines {
+You are back in the room you first woke up in.
+It's huge. You can't really fathom how large, but it took
+long enough to get from that last room back to the middle of
+this one. You wonder how you got here, and who is responsible.
+
+You can just about see doors to the north, east, south and west.
+
+What would you like to do?
+} print.lines
+
+
+while {
+    input {
+        case "n" {
+            call("./white.ues")
+            break
+        } case
+
+        case "s" {
+            call("./brown.ues")
+            break
+        } case 
+
+        case "e" {
+            call("./red.ues")
+            break
+        } case
+
+        case "w" {
+            call("./green.ues")
+            break
+        } case
+
+        case "u" {
+            println("There's nothing you can use right here.")
+        } case
+
+        case "h" {
+            println("You give yourself a quick hug. It's not very satisfying.")
+        } case
+
+        default {
+            println("I'm sorry, I don't understand you. Commands are: n, e, s, w, u and h.")
+        } default
+    } input
+} while

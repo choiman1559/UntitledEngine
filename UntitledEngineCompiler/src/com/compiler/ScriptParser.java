@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScriptParser {
+
     public static void parseScript(File file) {
         System.out.println("Parsing " + file.getName() + "...");
         try {
@@ -17,14 +18,14 @@ public class ScriptParser {
 
             while ((str_line = buffer.readLine()) != null) {
                 str_line = str_line.trim();
-                if (str_line.length() != 0 && !str_line.startsWith("#")) {
+                if (str_line.length() != 0 && !str_line.replace("\t", "").replace(" ","").startsWith("#")) {
                     items.add(str_line);
                 }
             }
             scriptFileArr = items.toArray(new String[0]);
 
-            StringBuilder ParsedJavaCode = new StringBuilder();
             List<String> linkedScriptToCompile = new ArrayList<>();
+            StringBuilder ParsedJavaCode = new StringBuilder();
 
             ParsedJavaCode.append("import java.io.*;\n");
             ParsedJavaCode.append("import java.util.ArrayList;\n");
@@ -46,7 +47,7 @@ public class ScriptParser {
                 if (lineWithoutSpace.startsWith("print.lines")) {
                     int j = i + 1;
                     for (; !scriptFileArr[j].replace("\t", "").replace(" ", "").startsWith("}print.lines"); j++) {
-                        ParsedJavaCode.append("System.out.println(\"").append(scriptFileArr[j].replace("\"", "\\\"")).append("\");\n");
+                        ParsedJavaCode.append("System.out.println(\"").append(scriptFileArr[j].replace("\"", "\\\"").replace("\\","\\\\")).append("\");\n");
                     }
                     i = j;
                     continue;
@@ -100,17 +101,18 @@ public class ScriptParser {
                 }
 
                 if (lineWithoutSpace.startsWith("break")) {
-                    ParsedJavaCode.append("break loop").append(--loopCount).append(";\n");
+                    ParsedJavaCode.append("break loop").append(loopCount).append(";\n");
                     continue;
                 }
 
                 if (lineWithoutSpace.startsWith("while{")) {
-                    ParsedJavaCode.append("loop").append(loopCount++).append(" : while(true) {\n");
+                    ParsedJavaCode.append("loop").append(++loopCount).append(" : while(true) {\n");
                     continue;
                 }
 
                 if (lineWithoutSpace.startsWith("}while")) {
                     ParsedJavaCode.append("}\n");
+                    loopCount--;
                     continue;
                 }
 
@@ -166,10 +168,11 @@ public class ScriptParser {
             writer.close();
 
             for (String s : linkedScriptToCompile) {
-                parseScript(new File(s));
+                File toParse = new File(s);
+                if(!new File(Main.tempJavaFolder + "/" + toParse.getName().split("\\.")[0] + ".java").exists()) parseScript(toParse);
             }
         } catch (Exception e) {
-            System.out.println("Exception thrown!: " + e.toString());
+            System.out.println("Exception thrown while processing \"" + file.getName() + "\": " + e.toString());
             e.printStackTrace();
         }
     }

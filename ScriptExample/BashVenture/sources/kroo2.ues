@@ -1,0 +1,49 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+print.lines {
+You're in a corridor, but it's quite a small one. You got here
+the first time by hugging a statue of a kitten. Standard.
+
+You see a glow coming from the rooms to your east and west, and
+there's a big, old looking door to the south of you.
+
+What would you like to do?
+} print.lines
+
+while {
+    input {
+        case "n" {
+            println("You faceplant the wall. Idiot.")
+        } case
+
+        case "s" {
+            call("./bigroom.ues")
+            break
+        } case 
+
+        case "e" {
+            call("./gameroom.ues")
+            break
+        } case
+
+        case "w" {
+            call("./grue.ues")
+            break
+        } case
+
+        case "u" {
+            println("There's nothing you can use right here.")
+        } case
+
+        case "h" {
+            println("After hugging that cat you aren't sure you should try to hug yourself again.")
+        } case
+
+        default {
+            println("I'm sorry, I don't understand you. Commands are: n, e, s, w, u and h.")
+        } default
+    } input
+} while

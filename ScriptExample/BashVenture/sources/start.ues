@@ -1,0 +1,78 @@
+main:
+clear()
+call("./titleart.ues")
+data.put("leverstate", "off")
+
+print.lines {
+    You've gone to sleep before. Lots of times, in fact.
+But last night it was... different. You felt like you were
+moving - being transported somehow over a great distance.
+It felt like you were half awake, but unable to open your
+eyes. Finally, you hear your alarm. It's time to wake up.
+
+During this adventure, I will be your eyes and hands.
+Available commands are:
+
+'n' for north,
+'s' for south,
+'e' for east,
+'w' for west,
+'u' for use,
+'h' for hug.
+
+Ctrl-C quits.
+
+  - - -
+BashVenture was written by Ben Nunney. It's intended as
+a framework for other people to hack around with and extend.
+Hugs and love to Will Crowther and Don Woods for creating &
+porting the original Colossal Cave 'adventure' back in the 70s.
+  - - -
+
+
+You awake to find yourself on the floor of a large room.
+You still have your pillow, but your bed and duvet are gone.
+You stand up, dazed and confused. It's a Thursday, or - at
+least - you think it is. You never could quite get the hang of Thursdays
+You can just about see doors to the north, east, south and west.
+It's kinda cold, and you're hungry.
+What would you like to do?
+} print.lines
+
+wait(1000)
+
+while {
+    input {
+        case "n" {
+            call("./white.ues")
+            break
+        } case
+
+        case "s" {
+            call("./brown.ues")
+            break
+        } case 
+
+        case "e" {
+            call("./red.ues")
+            break
+        } case
+
+        case "w" {
+            call("./green.ues")
+            break
+        } case
+
+        case "u" {
+            println("There's nothing you can use right here.")
+        } case
+
+        case "h" {
+            println("You give yourself a quick hug. It's not very satisfying.")
+        } case
+
+        default {
+            println("I'm sorry, I don't understand you. Commands are: n, e, s, w, u and h.")
+        } default
+    } input
+} while

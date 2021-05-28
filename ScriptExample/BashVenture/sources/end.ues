@@ -1,0 +1,75 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+println("You swallow the pill, and suddenly rainbows are all around you.\n")
+wait(4000)
+
+println("You look down to find that you're riding a unicorn. On a rainbow.\n")
+wait(3000)
+
+println("A motherfucking UNICORN.")
+wait(4000)
+
+println("This is ridiculous. Surely this is some kind of dream? You pinch")
+println("yourself to try and wake up. Wait, you're feeling dizzy...\n")
+wait(5000)
+
+println("You blink, and are surprised to find yourself laying in bed.")
+println("You check your phone - it's 5am, and definitely Thursday. Huh.")
+println("I guess it was all a dream.\n")
+wait(7000)
+
+println("You go to get out of bed and suddenly spot a tiny marbel figurine on")
+println("your bedside table. It's a beautifully carved kitten.\n")
+wait(5000)
+
+println("How the hell did that get there?")
+wait(5000)
+
+println("Unable to work out what is dream and what is reality, you shrug your")
+println("shoulders and pick up the figurine. It hasn't transported you anywhere")
+println("this time... but how did it get here? What does it mean?\n")
+wait(7000)
+
+println("Your phone buzzes. It's a call from a withheld number. You don't usually")
+println("answer those, but you get the feeling that this call might be important.\n")
+wait(5000)
+
+println("You answer the call, and an electronic voice says five words to you")
+println("before the line goes dead.\n")
+wait(3000)
+
+println("Just five words.\n")
+wait(7000)
+
+println("THE KITTEN IS WATCHING YOU.\n")
+wait(9000)
+
+print.lines {
+  _______ _            ______           _   
+ |__   __| |          |  ____|         | |  
+    | |  | |__   ___  | |__   _ __   __| |  
+    | |  | '_ \ / _ \ |  __| | '_ \ / _` |  
+    | |  | | | |  __/ | |____| | | | (_| |_ 
+    |_|  |_| |_|\___| |______|_| |_|\__,_(_)
+} print.lines
+call("./titleart.ues")
+
+print.lines {
+
+Thank you for playing the demo of BashVenture. Pretty random storyline, I know,
+but the aim was to show off the functionality, not win a pulitzer prize.
+
+Whoever you are, wherever you're from - live long and prosper. Keep smiling!
+
+                                                                - @BenNunney
+} print.lines
+
+println("Press [ENTER] to exit...")
+input {
+    default {
+        exit(0)
+    } default
+} input

@@ -1,0 +1,39 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+print.lines {
+This is a long room, and ask you walk down it, you see a person.
+Finally! Another person! You start to run toward the shadowy figure
+but then stop dead. This isn't... no... it can't be. It's... it's...
+IT'S A GRUE.
+} print.lines
+wait(3000)
+
+print.lines {
+
+No. NO! You cry, as he sits you down and, rather than beating you to
+death, starts to read you some of his Grue Poetry. It's awful. Your
+brain starts to melt and, as a result, your nose starts bleeding.
+
+} print.lines
+wait(5000)
+
+print.lines {
+You start to feel dizzy. You can't think straight. As you fall to the
+floor, your own blood and brains all around you, you begin
+to wonder why the grue didn't just kill you quickly like
+most do. Bloody liberal arts students.
+
+You slip into unconciousness.
+} print.lines
+wait(4000)
+println("YOU ARE DEAD.\n")
+
+println("Press [ENTER] to try again...")
+input {
+    default {
+        call("./mainroom.ues")
+    } default
+} input

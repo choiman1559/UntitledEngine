@@ -1,0 +1,69 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+println("You step through the door and into what looks like a scene from a movie.")
+
+wait(3000)
+println("There's a long table in front of you. Sat around it are several well-dressed")
+echo "people, both men and women, eating a very elaborate looking dinner."
+
+wait(2000)
+println("Weird.\n")
+
+wait(3000)
+println("There appears to have been a place laid at the table for you.\n")
+
+wait(5000)
+print.lines {
+Suddenly nervous, you take a seat and look around at the other diners.
+Are these the people who summoned you here? You try to ask them, but
+seem to be rendered more speechless than a test subject in a portal game.
+
+} print.lines
+
+wait(5000)
+print.lines {
+
+A waiter brings out a tray and places it in front of you. Lifting the lid,
+you find a weird rainbow coloured pill in front of you. Very 'Martix', you think
+to yourself. What does this mean? Are you supposed to take the pill?
+Is this some kind of test? And who ARE these people?!
+
+} print.lines
+wait(5000)
+println("\nWhat would you like to do?")
+
+while {
+    input {
+        case "n" {
+            println("You get up and look around. Not much over here.")
+        } case
+
+        case "s" {
+            println("You take a look at the decor of the room. It's pretty nice.")
+        } case 
+
+        case "e" {
+            println("There's a curtain - but no window behind it. How odd.")
+        } case
+
+        case "w" {
+            println("WHO ARE THESE PEOPLE?!")
+        } case
+
+        case "u" {
+            call("./end.ues")
+            break
+        } case
+
+        case "h" {
+            println("You hug the person next to you. He feels cold, and doesn't move.")
+        } case
+
+        default {
+            println("I'm sorry, I don't understand you. Commands are: n, e, s, w, u and h.")
+        } default
+    } input
+} while

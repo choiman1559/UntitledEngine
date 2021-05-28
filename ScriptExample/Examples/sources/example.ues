@@ -29,7 +29,7 @@ header: {
 } header
 
 #The `java` tag
-#(Script-method script only)
+#(interprets-method script only)
 #This tag is used by javafx to change the console's design or to make other configuration changes.
 #(Warning!) Must be called before calling the `main` tag.
 #Entering the values in the tag is optional, not required.
@@ -126,7 +126,13 @@ while {
 
         case "start2" {
             call("./example3.ues")
-        }
+        } case
+
+        case "clear" {
+#           The 'clear' function
+#           Clears all text displayed on the currently running console.
+            clear()
+        } case
 
 #       If none of the above `case` statements match, the subcommand is executed in `default`.
         default {

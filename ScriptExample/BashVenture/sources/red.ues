@@ -1,0 +1,48 @@
+main:
+clear()
+call("./titleart.ues")
+wait(1000)
+
+print.lines {
+You're in a room that has an odd red glow to it.
+Bookcases line the walls - dusty volumes with titles you
+can't quite make out. Somehow they seem ancient.
+
+There's a very comfortable looking chair in the corner.
+The only exit is to the west, back in the direction you came.
+
+What would you like to do?
+} print.lines
+
+while {
+    input {
+        case "n" {
+            println("Face, meet wall. Wall, meet Face.")
+        } case
+
+        case "s" {
+            println("You can't walk through walls.")
+        } case 
+
+        case "e" {
+            println("Nothing but wall here.")
+        } case
+
+        case "w" {
+            call("./mainroom.ues")
+            break
+        } case
+
+        case "u" {
+            println("You sit in the comfortable chair. It's like sitting on a cloud.")
+        } case
+
+        case "h" {
+            println("You give yourself a hug, hoping that the books won't judge you.")
+        } case
+
+        default {
+            println("I'm sorry, I don't understand you. Commands are: n, e, s, w, u and h.")
+        } default
+    } input
+} while
